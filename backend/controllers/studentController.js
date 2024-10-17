@@ -24,13 +24,15 @@ module.exports.addStudent = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Invalid Email" })
     }
 
-    if (!validator.isMobilePhone(phoneNumber, 'en-IN')) {
-        return res.status(400).json({ message: "Please enter a valid phone number" })
+    if (!/^\d{10}$/.test(phoneNumber)) {
+        return res.status(400).json({ message: "Please enter a valid 10-digit phone number" });
     }
+    
 
-    if (!validator.isMobilePhone(guardianNumber, 'en-IN')) {
-        return res.status(400).json({ message: "Please enter a valid phone number" })
+    if (!/^\d{10}$/.test(guardianNumber)) {
+        return res.status(400).json({ message: "Please enter a valid 10-digit phone number" });
     }
+    
 
     const studentExists = await Student.findOne({ $or: [{ studentID }, { email }] });
     if (studentExists) {
@@ -62,12 +64,13 @@ module.exports.updateStudent = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Invalid Email" })
     }
 
-    if (!validator.isMobilePhone(phoneNumber, 'en-IN')) {
-        return res.status(400).json({ message: "Please enter a valid phone number" })
+    if (!/^\d{10}$/.test(phoneNumber)) {
+        return res.status(400).json({ message: "Please enter a valid 10-digit phone number" });
     }
+    
 
-    if (!validator.isMobilePhone(guardianNumber, 'en-IN')) {
-        return res.status(400).json({ message: "Please enter a valid phone number" })
+    if (!/^\d{10}$/.test(guardianNumber)) {
+        return res.status(400).json({ message: "Please enter a valid 10-digit phone number" });
     }
     
         

@@ -3,22 +3,32 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/features/authSlice';
 import { useDispatch } from 'react-redux';
-import { useToast } from '@chakra-ui/react';
-
+import {
+  Box,
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  Heading,
+  VStack,
+  useToast,
+  Spinner,
+  Text,
+} from '@chakra-ui/react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const toast = useToast()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const toast = useToast();
 
   const loginHandler = async (e) => {
     e.preventDefault();
-
     setLoading(true);
+
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/login`, { email, password });
       const user = await response.data;
@@ -28,15 +38,14 @@ const Login = () => {
         status: 'success',
         duration: 4000,
         isClosable: true,
-        position: 'top-right'
-      })
+        position: 'top-right',
+      });
 
-      dispatch(login(user))
+      dispatch(login(user));
 
       if (user.role === 'Admin') navigate('/admin-dashboard');
       else if (user.role === 'Office Staff') navigate('/staff-dashboard');
       else navigate('/librarian-dashboard');
-      
     } catch (err) {
       toast({
         title: 'Login Failed',
@@ -44,56 +53,84 @@ const Login = () => {
         status: 'error',
         duration: 4000,
         isClosable: true,
-        position: 'top'
-      })
+        position: 'top',
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-      <h2 className="text-2xl font-semibold mb-6">Student Management Login</h2>
-      <div className="w-full max-w-xs">
-        <form onSubmit={loginHandler} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              disabled={loading}
-            />
-          </div>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      h="100vh"
+      bg="gray.100"
+      p={4}
+    >
+      <Box
+        w="full"
+        maxW="md"
+        p={8}
+        borderRadius="lg"
+        boxShadow="lg"
+        bg="white"
+      >
+        <Heading
+          as="h2"
+          size="lg"
+          textAlign="center"
+          mb={6}
+          color="teal.500"
+        >
+          Student Management Login
+        </Heading>
 
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Password:</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              disabled={loading}
-            />
-          </div>
+        <form onSubmit={loginHandler}>
+          <VStack spacing={4} align="stretch">
+            <FormControl id="email">
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                isDisabled={loading}
+              />
+            </FormControl>
 
-          <div className="flex items-center justify-center">
-            <button
+            <FormControl id="password">
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                isDisabled={loading}
+              />
+            </FormControl>
+
+            <Button
               type="submit"
-              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={loading}
+              colorScheme="teal"
+              w="full"
+              isLoading={loading}
+              loadingText="Logging in"
             >
-              {loading ? 'Logging in...' : 'Login'}
-            </button>
-          </div>
+              Login
+            </Button>
+          </VStack>
         </form>
-      </div>
-    </div>
+
+        {loading && (
+          <Box textAlign="center" mt={4}>
+            <Spinner size="lg" color="teal.500" />
+            <Text>Logging in...</Text>
+          </Box>
+        )}
+      </Box>
+    </Box>
   );
 };
 
