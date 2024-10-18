@@ -34,13 +34,13 @@ const studentSchema = new mongoose.Schema({
   feesHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'FeesRemarks',  // Refers to the FeesRemarks model
+      ref: 'FeesRemarks',
     }
   ],
   libraryHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'LibraryHistory',  // Refers to the LibraryHistory model
+      ref: 'LibraryHistory',
     }
   ],
   guardianName: {

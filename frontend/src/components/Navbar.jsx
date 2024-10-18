@@ -6,7 +6,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import { logout } from '../redux/features/authSlice'
 
 const Navbar = ({ baseRoute }) => {
-  const user = useSelector(state => state.userAuth.userInfo); // Assuming user object contains name and pic
+  const user = useSelector(state => state.userAuth.userInfo)
   const location = useLocation();
   const navigate = useNavigate()
   const dispatch = useDispatch()

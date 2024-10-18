@@ -69,7 +69,6 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/library/${record._id}`, formData, config);
         dispatch(updateRecord(response.data))
       } else {
-        // Add new record
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/library`, formData, config);
         dispatch(addRecord(response.data))
       }

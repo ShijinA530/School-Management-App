@@ -27,7 +27,7 @@ const LibraryDeleteConfirm = ({ isOpen, onClose, record }) => {
           Authorization: `Bearer ${user.token}`
         }
       }
-      // Make DELETE request to remove the library record by its _id
+      
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/library/${record._id}`, config);
       
       dispatch(deleteRecord(record._id))
@@ -52,7 +52,6 @@ const LibraryDeleteConfirm = ({ isOpen, onClose, record }) => {
         <ModalHeader>Delete Confirmation</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          {/* Show a confirmation message including the book name */}
           <Text>
             Are you sure you want to delete this library record?
           </Text>

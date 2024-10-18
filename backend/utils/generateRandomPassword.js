@@ -1,4 +1,3 @@
-// passwordUtils.js
 
 // Function to generate a random password
 const generateRandomPassword = () => {

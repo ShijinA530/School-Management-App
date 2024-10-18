@@ -47,15 +47,11 @@ const StudentDetails = () => {
     fetchData();
   }, [user]);
 
-  
-
-  // Handle Add/Edit
   const handleAddEdit = (student) => {
     setEditingStudent(student);
     onOpen(); // Open modal for add/edit
   };
 
-  // Handle Delete Confirmation
   const handleDeleteConfirmation = (student) => {
     setStudentToDelete(student);
     onDeleteOpen(); // Open the delete confirmation modal

@@ -84,7 +84,7 @@ const Login = () => {
           mb={6}
           color="teal.500"
         >
-          Student Management Login
+          School Management Login
         </Heading>
 
         <form onSubmit={loginHandler}>

@@ -18,7 +18,6 @@ const FeeDetails = () => {
   const dispatch = useDispatch()
   const toast = useToast()
 
-  // Fetch the fee remarks from the server
   useEffect(() => {
     const fetchFeeRemarks = async () => {
       try {
@@ -47,13 +46,11 @@ const FeeDetails = () => {
     fetchFeeRemarks();
   }, []);
 
-  // Handle adding or editing a fee remark
   const handleAddEdit = (fee = null) => {
     setEditingFee(fee);
     onOpen(); // Open the add/edit modal
   };
 
-  // Handle delete confirmation
   const handleDelete = (fee) => {
     setDeletingFee(fee);
     onDeleteOpen(); // Open the delete confirmation modal

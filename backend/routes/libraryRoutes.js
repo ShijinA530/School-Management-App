@@ -12,7 +12,7 @@ router.post('/', protect, authorize(['Admin', 'Office Staff', 'Librarian']), add
 // Update Library History
 router.put('/:id', protect, authorize(['Admin', 'Office Staff', 'Librarian']), updateLibraryHistory)
 
-//n Delete Library Histiry
+// Delete Library Histiry
 router.delete('/:id', protect, authorize(['Admin', 'Office Staff', 'Librarian']), deleteLibraryHistory)
 
 module.exports = router

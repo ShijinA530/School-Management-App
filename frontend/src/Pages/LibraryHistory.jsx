@@ -18,8 +18,6 @@ const LibraryDetails = () => {
   const dispatch = useDispatch()
   const toast = useToast()
 
-
-  // Fetch the library records from the server
   useEffect(() => {
     const fetchLibraryRecords = async () => {
       try {
@@ -48,13 +46,11 @@ const LibraryDetails = () => {
     fetchLibraryRecords();
   }, []);
 
-  // Handle adding or editing a library record
   const handleAddEdit = (record = null) => {
     setEditingRecord(record);
     onOpen(); // Open the add/edit modal
   };
 
-  // Handle delete confirmation
   const handleDelete = (record) => {
     setDeletingRecord(record);
     onDeleteOpen(); // Open the delete confirmation modal

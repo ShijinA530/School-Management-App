@@ -65,7 +65,6 @@ const AccountManagement = () => {
     onOpen(); // Open modal for add/edit
   };
 
-  // Handle Delete Confirmation
   const handleDeleteConfirmation = (staffMember) => {
     setStaffToDelete(staffMember);
     onDeleteOpen(); // Open the delete confirmation modal

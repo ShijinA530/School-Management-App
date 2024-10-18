@@ -19,7 +19,6 @@ const StudentDeleteConfirmModal = ({ isOpen, onClose, student }) => {
   const dispatch = useDispatch()
   const toast = useToast()
 
-  // Handle Delete
   const handleDelete = async (id) => {
     try {
       const config = {
