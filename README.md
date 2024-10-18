@@ -46,11 +46,11 @@ The application has the following features:
      ```
    - Create a `.env` file in the `backend` directory with the following content:
      ```
-    PORT=5000
-    MONGO_URI=mongodb://localhost:27017/GVR
-    JWT_SECRET=unnimol
-    EMAIL_ADDRESS=shijinasasi835@gmail.com
-    EMAIL_PASSWORD=muse ydse cdsj ozeq
+     PORT=5000
+     MONGO_URI=mongodb://localhost:27017/GVR
+     JWT_SECRET=unnimol
+     EMAIL_ADDRESS=shijinasasi835@gmail.com
+     EMAIL_PASSWORD=muse ydse cdsj ozeq
      ```
 
 3. **Frontend Setup**:
