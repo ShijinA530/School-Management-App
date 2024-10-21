@@ -10,7 +10,7 @@ const libraryRoutes = require('./routes/libraryRoutes')
 const cors = require('cors');
 const { loginUser } = require('./controllers/userController')
 var corsOptions = {
-    "origin": "http://localhost:5173",
+    "origin": "https://school-management-app-kxk1.onrender.com",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
