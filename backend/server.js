@@ -21,7 +21,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send("helo world")
+    res.send("hello world")
 })
 
 app.use('/api/user', userRoutes)

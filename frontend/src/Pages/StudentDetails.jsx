@@ -72,7 +72,9 @@ const StudentDetails = () => {
       </Button>
 
       {loading ? (
-        <Spinner size="xl" />
+        <Box mt={4} display='flex' justifyContent='center'>
+          <Spinner size="xl" />
+        </Box>
       ) : (
         <Table variant="simple" colorScheme="cyan" border="2px" borderColor="cyan.500"  mx="auto">
           <Thead bg="cyan.500">

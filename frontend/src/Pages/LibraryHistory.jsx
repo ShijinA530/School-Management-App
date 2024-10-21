@@ -64,7 +64,9 @@ const LibraryDetails = () => {
       <Button colorScheme="teal" mb={4} onClick={() => handleAddEdit(null)}>Add Library Record</Button>
 
       {loading ? (
+        <Box mt={4} display='flex' justifyContent='center'>
         <Spinner size="xl" />
+      </Box>
       ) : (
         <Table variant="simple" colorScheme="cyan" border="2px" borderColor="cyan.500"  mx="auto">
           <Thead bg='cyan.500'>

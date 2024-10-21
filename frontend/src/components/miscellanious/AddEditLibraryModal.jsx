@@ -29,6 +29,7 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
     fineAmount: 0,
   })
 
+  const [loading, setLoading] = useState(false)
   const user = useSelector((state) => state.userAuth.userInfo)
   const dispatch = useDispatch()
   const toast = useToast()
@@ -58,6 +59,7 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true)
     try {
       const config = {
         headers: {
@@ -83,6 +85,8 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
         isClosable: true,
         position: 'bottom-right'
       })
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -147,7 +151,7 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+          <Button colorScheme="blue" mr={3} onClick={handleSubmit} isLoading={loading}>
             {record ? 'Update' : 'Add'}
           </Button>
           <Button variant="ghost" onClick={onClose}>Cancel</Button>

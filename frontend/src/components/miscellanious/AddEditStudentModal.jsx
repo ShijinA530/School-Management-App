@@ -17,6 +17,7 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
     guardianNumber: ''
   });
 
+  const [loading, setLoading] = useState(false)
   const user = useSelector(state => state.userAuth.userInfo)
   const dispatch = useDispatch()
   const toast = useToast()
@@ -34,11 +35,12 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true)
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
-      };
+      }
       if (student) {
         const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/students/${student._id}`, formData, config);
         dispatch(updateStudent(response.data))
@@ -46,7 +48,7 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/students`, formData, config);
         dispatch(addStudent(response.data))
       }
-      onClose();
+      onClose()
     } catch (err) {
       console.error('Error saving student:', err.response)
       toast({
@@ -57,6 +59,8 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
         isClosable: true,
         position: 'bottom-right'
       })
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -105,7 +109,7 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+          <Button colorScheme="blue" mr={3} onClick={handleSubmit} isLoading={loading}>
             {student ? 'Update' : 'Add'}
           </Button>
           <Button onClick={onClose}>Cancel</Button>

@@ -28,6 +28,7 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
     paymentStatus: '',
   })
 
+  const [loading, setLoading] = useState(false)
   const user = useSelector((state) => state.userAuth.userInfo)
   const dispatch = useDispatch()
   const toast = useToast()
@@ -56,6 +57,7 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true)
     try {
       const config = {
         headers: {
@@ -82,6 +84,8 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
         isClosable: true,
         position: 'bottom-right'
       })
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -136,7 +140,7 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+          <Button colorScheme="blue" mr={3} onClick={handleSubmit} isLoading={loading}>
             {fee ? 'Update' : 'Add'}
           </Button>
           <Button variant="ghost" onClick={onClose}>Cancel</Button>

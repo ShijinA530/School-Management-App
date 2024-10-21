@@ -122,13 +122,6 @@ const Login = () => {
             </Button>
           </VStack>
         </form>
-
-        {loading && (
-          <Box textAlign="center" mt={4}>
-            <Spinner size="lg" color="teal.500" />
-            <Text>Logging in...</Text>
-          </Box>
-        )}
       </Box>
     </Box>
   );

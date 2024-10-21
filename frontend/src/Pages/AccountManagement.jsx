@@ -82,7 +82,9 @@ const AccountManagement = () => {
   </Box>
 
       {loading ? (
+        <Box mt={4} display='flex' justifyContent='center'>
         <Spinner size="xl" />
+      </Box>
       ) : (
         <Table variant="simple" colorScheme="cyan" border="2px" borderColor="cyan.500"  mx="auto" width='550px'>
           <Thead bg="cyan.500">
