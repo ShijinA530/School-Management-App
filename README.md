@@ -79,7 +79,7 @@ The application has the following features:
 5. **Access the App**:
    - The frontend will run on `http://localhost:5173` and the backend on `http://localhost:5000`.
 
-   - You can login as an admin using:
+   - You can login to the system as an admin using:
       email - shijin@example.com &
       password - 12345
 
