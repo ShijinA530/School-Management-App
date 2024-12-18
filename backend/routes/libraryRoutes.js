@@ -10,7 +10,7 @@ router.get('/', protect, authorize(['Admin', 'Office Staff', 'Librarian']), getL
 router.post('/', protect, authorize(['Admin', 'Office Staff', 'Librarian']), addLibraryHistory)
 
 // Update Library History
-router.put('/:id', protect, authorize(['Admin', 'Office Staff', 'Librarian']), updateLibraryHistory)
+router.patch('/:id', protect, authorize(['Admin', 'Office Staff', 'Librarian']), updateLibraryHistory)
 
 // Delete Library Histiry
 router.delete('/:id', protect, authorize(['Admin', 'Office Staff', 'Librarian']), deleteLibraryHistory)

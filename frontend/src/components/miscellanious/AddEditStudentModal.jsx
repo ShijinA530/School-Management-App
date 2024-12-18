@@ -42,7 +42,7 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
         },
       }
       if (student) {
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/students/${student._id}`, formData, config);
+        const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/students/${student._id}`, formData, config);
         dispatch(updateStudent(response.data))
       } else {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/students`, formData, config);
@@ -73,7 +73,7 @@ const AddEditStudentModal = ({ isOpen, onClose, student }) => {
         <ModalBody>
           <FormControl mb={4} isRequired>
             <FormLabel>Student ID</FormLabel>
-            <Input type='string' name="studentID" value={formData.studentID} onChange={handleChange} />
+            <Input type='string' name="studentID" value={formData.studentID} disabled={student} onChange={handleChange} />
           </FormControl>
           <FormControl mb={4} isRequired>
             <FormLabel>Name</FormLabel>

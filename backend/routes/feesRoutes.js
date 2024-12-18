@@ -10,7 +10,7 @@ router.get('/', protect, authorize(['Admin', 'Office Staff']), getFeesDetails);
 router.post('/', protect, authorize(['Admin', 'Office Staff']), addFeesRemark);
 
 // Update a fee data
-router.put('/:id', protect, authorize(['Admin', 'Office Staff']), updateFeeRemark);
+router.patch('/:id', protect, authorize(['Admin', 'Office Staff']), updateFeeRemark);
 
 // Delete a fee data
 router.delete('/:id', protect, authorize(['Admin', 'Office Staff']), deleteFeeRemark);

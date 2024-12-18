@@ -61,7 +61,7 @@ const LibraryDetails = () => {
       <Text fontSize="3xl" fontWeight="semibold" textAlign="center" mb={4}>
         Library History
       </Text>
-      <Button colorScheme="teal" mb={4} onClick={() => handleAddEdit(null)}>Add Library Record</Button>
+      <Button isDisabled={user.role === 'Office Staff'} colorScheme="teal" mb={4} onClick={() => handleAddEdit(null)}>Add Library Record</Button>
 
       {loading ? (
         <Box mt={4} display='flex' justifyContent='center'>
@@ -101,10 +101,10 @@ const LibraryDetails = () => {
                 <Td>{record.status}</Td>
                 <Td>{record.fineAmount}</Td>
                 <Td>
-                  <Button colorScheme="blue" size="sm" mr={2} onClick={() => handleAddEdit(record)}>
+                  <Button isDisabled={user.role === 'Office Staff'} colorScheme="blue" size="sm" mr={2} onClick={() => handleAddEdit(record)}>
                     Edit
                   </Button>
-                  <Button colorScheme="red" size="sm" onClick={() => handleDelete(record)}>
+                  <Button isDisabled={user.role === 'Office Staff'} colorScheme="red" size="sm" onClick={() => handleDelete(record)}>
                     Delete
                   </Button>
                 </Td>

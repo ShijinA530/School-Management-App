@@ -44,16 +44,16 @@ module.exports.updateFeeRemark = asyncHandler(async (req, res) => {
     const { studentID, feeType, amount, paymentDate, paymentStatus } = req.body;
   
     if ( !studentID || !feeType || !amount || !paymentDate || !paymentStatus) {
-        res.status(400).json({message: "Please fill all the required fields."})
+        return res.status(400).json({message: "Please fill all the required fields."})
     }
   
     try {
         const updatedFeeRemark = await FeesRemarks.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true } )
         const populatedFeesRemark = await FeesRemarks.findById(updatedFeeRemark._id).populate('student');
         
-        res.status(201).json(populatedFeesRemark);
+        return res.status(201).json(populatedFeesRemark);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        return res.status(500).json({ message: error.message });
     }
 });
   

@@ -2,13 +2,12 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const staffRoutes = require('./routes/staffRoutes')
-const userRoutes = require('./routes/userRoutes')
+const authRoutes = require('./routes/authRoutes')
 const studentRoutes = require('./routes/studentRoutes')
 const feesRoutes = require('./routes/feesRoutes')
 const libraryRoutes = require('./routes/libraryRoutes')
 
 const cors = require('cors');
-const { loginUser } = require('./controllers/userController')
 var corsOptions = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -24,7 +23,7 @@ app.get('/', (req, res) => {
     res.send("hello world")
 })
 
-app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 app.use('/api/staff', staffRoutes)
 app.use('/api/students', studentRoutes)
 app.use('/api/fees', feesRoutes)

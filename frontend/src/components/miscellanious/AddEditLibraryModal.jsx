@@ -68,7 +68,7 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
       };
 
       if (record) {
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/library/${record._id}`, formData, config);
+        const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/library/${record._id}`, formData, config);
         dispatch(updateRecord(response.data))
       } else {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/library`, formData, config);
@@ -118,7 +118,7 @@ const AddEditLibraryModal = ({ isOpen, onClose, record }) => {
             <Input
               type="date"
               name="borrowDate"
-              value={formData.borrowDate.split('T')[0]}
+              value={formData?.borrowDate?.split('T')[0]}
               onChange={handleChange}
             />
           </FormControl>

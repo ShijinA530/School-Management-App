@@ -52,7 +52,7 @@ const AddEditStaffModal = ({ isOpen, onClose, staff }) => {
       }
 
       if (staff) {
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/staff/${staff._id}`, { name, email, role }, config);
+        const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/staff/${staff._id}`, { name, email, role }, config);
         dispatch(addStaff(response.data))
       } else {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/staff`, { name, email, role }, config);

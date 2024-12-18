@@ -10,7 +10,7 @@ router.get('/', protect, authorize(['Admin', 'Office Staff', 'Librarian']), getS
 router.post('/', protect, authorize(['Admin', 'Office Staff']), addStudent);
 
 // Update a student data
-router.put('/:id', protect, authorize(['Admin', 'Office Staff']), updateStudent);
+router.patch('/:id', protect, authorize(['Admin', 'Office Staff']), updateStudent);
 
 // Delete a student data
 router.delete('/:id', protect, authorize(['Admin', 'Office Staff']), deleteStudent);

@@ -11,8 +11,6 @@ import {
   Input,
   FormControl,
   FormLabel,
-  Alert,
-  AlertIcon,
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
@@ -67,7 +65,7 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
       if (fee) {
         
       console.log(formData)
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/fees/${fee._id}`, formData, config);
+        const response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/fees/${fee._id}`, formData, config);
         dispatch(updateFee(response.data))
       } else {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/fees`, formData, config);
@@ -107,6 +105,7 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
           <FormControl mb={4} isRequired>
             <FormLabel>Fee Type</FormLabel>
             <Input
+              placeholder='Tuition, Bus, Library etc'
               name="feeType"
               value={formData.feeType}
               onChange={handleChange}
@@ -126,13 +125,14 @@ const AddEditFeeModal = ({ isOpen, onClose, fee }) => {
             <Input
               type="date"
               name="paymentDate"
-              value={formData.paymentDate.split('T')[0]}
+              value={formData?.paymentDate?.split('T')[0]}
               onChange={handleChange}
             />
           </FormControl>
           <FormControl mb={4} isRequired>
             <FormLabel>Payment Status</FormLabel>
             <Input
+              placeholder='Paid, Unpaid, Overdue'
               name="paymentStatus"
               value={formData.paymentStatus}
               onChange={handleChange}
